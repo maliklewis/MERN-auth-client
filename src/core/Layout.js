@@ -70,7 +70,7 @@ const Layout = ({children, match, history}) => {
     return (
         <Fragment>
             {nav()}
-            <div className="container">{children}</div>
+            <div className="container vertical-center">{children}</div>
         </Fragment>
     );
 };
