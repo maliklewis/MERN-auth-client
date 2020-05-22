@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import Layout from '../core/Layout'
 import axios from 'axios'
 //pass messages to user
@@ -10,8 +10,8 @@ import {authenticate, isAuth} from './Helpers'
 const Signin = ({history}) => {
     //history comes from browserRouter in Routes which all components are wrapped in
     const [values, setValues] = useState({
-        email: "maliklewis@cmail.carleton.ca",
-        password: "123456",
+        email: "",
+        password: "",
         buttonText: "Submit",
     });
 

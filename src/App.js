@@ -4,7 +4,7 @@ import Layout from './core/Layout';
 const App = () => {
   return (
     <Layout>
-      <h1>Hello from React</h1>
+      <h1>Welcome to Parallel</h1>
     </Layout>
   );
 };

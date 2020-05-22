@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import Layout from '../core/Layout'
 import axios from 'axios'
 //pass messages to user
@@ -9,9 +9,9 @@ import {isAuth} from './Helpers'
 
 const Signup = () => {
     const [values, setValues] = useState({
-        name: "Test Name",
-        email: "maliklewis@cmail.carleton.ca",
-        password: "123456",
+        name: "",
+        email: "",
+        password: "",
         buttonText: "Submit",
     });
 

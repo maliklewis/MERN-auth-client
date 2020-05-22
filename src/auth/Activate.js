@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Link, Redirect} from 'react-router-dom';
 import Layout from '../core/Layout';
 import axios from 'axios';
 //pass messages to user
@@ -7,7 +6,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import jwt from 'jsonwebtoken';
 
-const Activate = ({match}) => {
+const Activate = ({match, history}) => {
     const [values, setValues] = useState({
         name: "",
         token: "",
@@ -40,6 +39,7 @@ const Activate = ({match}) => {
             //clean up values to nothing
             setValues({...values, show:false});
             toast.success(response.data.message);
+            history.push('/');
         })
         .catch(error => {
             console.log('ACTIVATION ERROR', error.response.data.error);

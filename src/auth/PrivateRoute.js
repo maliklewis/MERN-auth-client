@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import {isAuth} from './Helpers'
-import Private from '../core/Private'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render = {
