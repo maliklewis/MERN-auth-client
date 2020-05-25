@@ -5,7 +5,7 @@ import axios from 'axios'
 //pass messages to user
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-import {isAuth} from './Helpers'
+import {isAuth, getLocalStorage} from './Helpers'
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -28,7 +28,7 @@ const Signup = () => {
         setValues({...values, buttonText: 'Submitting'})
         axios({
             method: 'POST',
-            url: `${process.env.REACT_APP_API}/signup`,
+            url: `${getLocalStorage('server-url')}/signup`,
             data: {name, email, password}
         })
         .then(response => {

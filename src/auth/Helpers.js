@@ -41,11 +41,20 @@ export const removeLocalStorage = (key) => {
     }
 };
 
+//get item from local storage
+export const getLocalStorage = (key) => {
+    if (window !== 'undefined') {
+        return JSON.parse(localStorage.getItem(key))
+    }
+}
+
 //authenticate user by passing data to cookie and local storage during signin
 export const authenticate = (response, next) => {
     //console.log(reponse);
+    //let serverUrl = process.env.NODE_ENV === "development" ? "http://localhost:8000" : "maliklewis.ca"
     setCookie('token', response.data.token);
     setLocalStorage('user', response.data.user);
+    //setLocalStorage('server-url', serverUrl);
     next();
 };
 

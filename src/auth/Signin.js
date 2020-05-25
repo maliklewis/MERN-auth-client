@@ -5,7 +5,7 @@ import axios from 'axios'
 //pass messages to user
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-import {authenticate, isAuth} from './Helpers'
+import {authenticate, isAuth, getLocalStorage} from './Helpers'
 
 const Signin = ({history}) => {
     //history comes from browserRouter in Routes which all components are wrapped in
@@ -28,7 +28,7 @@ const Signin = ({history}) => {
         setValues({...values, buttonText: 'Submitting'})
         axios({
             method: 'POST',
-            url: `${process.env.REACT_APP_API}/signin`,
+            url: `${getLocalStorage('server-url')}/signin`,
             data: {email, password}
         })
         .then(response => {

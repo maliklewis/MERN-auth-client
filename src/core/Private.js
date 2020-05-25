@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Layout from '../core/Layout'
 import axios from 'axios'
-import {isAuth, getCookie, singout} from '../auth/Helpers'
+import {isAuth, getCookie, singout, getLocalStorage} from '../auth/Helpers'
 //pass messages to user
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -28,7 +28,7 @@ const Private = ({history}) => {
     const loadProfile = () => {
         axios({
             method: 'GET',
-            url: `${process.env.REACT_APP_API}/user/${isAuth()._id}`,
+            url: `${getLocalStorage('server-url')}/user/${isAuth()._id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -62,7 +62,7 @@ const Private = ({history}) => {
         setValues({...values, buttonText: 'Updating'})
         axios({
             method: 'PUT',
-            url: `${process.env.REACT_APP_API}/user/update`,
+            url: `${getLocalStorage('server-url')}/user/update`,
             data: {name, password},
             headers: {
                 Authorization: `Bearer ${token}`
