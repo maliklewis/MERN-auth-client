@@ -1,11 +1,6 @@
 import React from 'react';
 import Layout from './core/Layout';
 
-
-console.log(process.env)
-
-
-
 const App = () => {
   return (
     <Layout>
