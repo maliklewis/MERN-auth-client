@@ -11,7 +11,7 @@ import AdminRoute from './auth/AdminRoute'
 import {setLocalStorage} from './auth/Helpers'
 
 const setUrl = () => {
-    let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : '68.183.207.128/api';
+    let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : 'http://68.183.207.128/api';
     setLocalStorage("server-url", serverUrl)
 }
 
