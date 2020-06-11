@@ -6,6 +6,7 @@ import axios from 'axios'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import {authenticate, isAuth, getLocalStorage} from './Helpers'
+import Google from './Google'
 
 const Signin = ({history}) => {
     //history comes from browserRouter in Routes which all components are wrapped in
@@ -21,6 +22,12 @@ const Signin = ({history}) => {
         //console.log(event.target.value)
         setValues({...values, [name]: event.target.value})
     };
+
+    const informParent = response => {
+        authenticate(response, () => {
+            isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private');
+        });
+    }
 
     const clickSubmit = event => {
         //stop the page from reloading
@@ -76,6 +83,7 @@ const Signin = ({history}) => {
             <ToastContainer />
             {isAuth() ? <Redirect to="/"/> : null}
             <h1 className="p-5 text-center">SignIn</h1>
+            <Google informParent={informParent}/>
             {signinForm()}
             </div>
         </Layout>

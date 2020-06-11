@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Layout from '../core/Layout'
 import axios from 'axios'
-import {isAuth, getCookie, singout, getLocalStorage} from '../auth/Helpers'
+import {isAuth, getCookie, singout, getLocalStorage, updateUser} from '../auth/Helpers'
 //pass messages to user
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
@@ -70,15 +70,16 @@ const Private = ({history}) => {
         })
         .then(response => {
             console.log('PRIVATE PROFILE UPDATE SUCCESS', response);
-            //clean up values to nothing
-            setValues({...values, name:'', email:'', password:'', buttonText: 'Update'});
-            toast.success(response.data.message);
+            updateUser(response, () => {
+                setValues({...values, buttonText: 'Update'});
+                toast.success("Profile updated successfully!");
+            });
         })
         .catch(error => {
             console.log('PRIVATE PROFILE UPDATE ERROR', error.response.data);
             setValues({...values, buttonText: 'Update'});
             toast.error(error.response.data.error);
-        })
+        });
     };
 
     const updateForm = () => (
