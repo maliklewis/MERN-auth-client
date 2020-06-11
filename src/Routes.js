@@ -8,12 +8,13 @@ import Private from './core/Private'
 import Admin from './core/Admin'
 import PrivateRoute from './auth/PrivateRoute'
 import AdminRoute from './auth/AdminRoute'
-import {setLocalStorage} from './auth/Helpers'
+import {setUrl} from './Config'
+//import {setLocalStorage} from './auth/Helpers'
 
-const setUrl = () => {
-    let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : 'http://68.183.207.128/api';
-    setLocalStorage("server-url", serverUrl)
-}
+// const setUrl = () => {
+//     let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : 'http://68.183.207.128/api';
+//     setLocalStorage("server-url", serverUrl)
+// }
 
 const Routes = () => {
     return (
