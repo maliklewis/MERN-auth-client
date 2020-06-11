@@ -3,6 +3,7 @@ import axios from 'axios'
 import GoogleLogin from 'react-google-login'
 import 'react-toastify/dist/ReactToastify.min.css'
 import {getLocalStorage} from './Helpers'
+import {apis} from '../Config'
 
 const Google = ({informParent = f => f}) => {
     const responseGoogle = (response) => {
@@ -24,7 +25,7 @@ const Google = ({informParent = f => f}) => {
     return (
         <div className='pb-3'>
             <GoogleLogin
-                clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+                clientId={`${apis.GOOGLE_CLIENT_ID}`}
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 render={renderProps => (
