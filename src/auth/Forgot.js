@@ -1,21 +1,19 @@
 import React, {useState} from 'react'
-import {Redirect} from 'react-router-dom'
 import Layout from '../core/Layout'
 import axios from 'axios'
 //pass messages to user
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-import {isAuth, getLocalStorage} from './Helpers'
+import {getLocalStorage} from './Helpers'
 
-const Signup = () => {
+const Forgot = ({history}) => {
+    //history comes from browserRouter in Routes which all components are wrapped in
     const [values, setValues] = useState({
-        name: "",
         email: "",
-        password: "",
-        buttonText: "Submit",
+        buttonText: "Request",
     });
 
-    const {name, email, password, buttonText} = values;
+    const {email, buttonText} = values;
 
     const handleChange = (name) => (event) => {
         //console.log(event.target.value)
@@ -27,38 +25,28 @@ const Signup = () => {
         event.preventDefault()
         setValues({...values, buttonText: 'Submitting'})
         axios({
-            method: 'POST',
-            url: `${getLocalStorage('server-url')}/signup`,
-            data: {name, email, password}
+            method: 'PUT',
+            url: `${getLocalStorage('server-url')}/forgot-password`,
+            data: {email}
         })
         .then(response => {
-            console.log('SIGNUP SUCCESS', response);
-            //clean up values to nothing
-            setValues({...values, name:'', email:'', password:'', buttonText: 'Submitted'});
+            console.log('FORGOT PASSWORD SUCCESS', response);
+            setValues({...values, buttonText: 'Requested'});
             toast.success(response.data.message);
+            
         })
         .catch(error => {
-            console.log('SIGNUP ERROR', error.response.data);
-            setValues({...values, buttonText: 'Submit'});
+            console.log('FORGOT PASSWORD ERROR', error.response.data.error);
+            setValues({...values, buttonText: 'Request'});
             toast.error(error.response.data.error);
         })
     };
 
-    const signupForm = () => (
+    const forgotForm = () => (
         <form>
-            <div className="form-group">
-                <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} value={name} type="text" className="form-control"/>
-            </div>
-
             <div className="form-group">
                 <label className="text-muted">Email</label>
                 <input onChange={handleChange('email')} value={email} type="email" className="form-control"/>
-            </div>
-
-            <div className="form-group">
-                <label className="text-muted">Password</label>
-                <input onChange={handleChange('password')} value={password} type="password" className="form-control"/>
             </div>
 
             <div>
@@ -74,12 +62,11 @@ const Signup = () => {
         <Layout>
             <div className="col-d-6">
             <ToastContainer />
-            {isAuth() ? <Redirect to="/"/> : null}
-            <h1 className="p-5 text-center">Signup</h1>
-            {signupForm()}
+            <h1 className="p-5 text-center">Forgot Password</h1>
+            {forgotForm()}
             </div>
         </Layout>
     );
 };
 
-export default Signup;
+export default Forgot;

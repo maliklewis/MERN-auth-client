@@ -60,7 +60,7 @@ const Activate = ({match, history}) => {
 
     return (
         <Layout>
-            <div className="col-d-6 offset-md-3">
+            <div className="col-d-6">
             <ToastContainer />
             {activationLink()}
             </div>

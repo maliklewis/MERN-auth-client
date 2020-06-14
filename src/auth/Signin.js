@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import Layout from '../core/Layout'
 import axios from 'axios'
 //pass messages to user
@@ -79,12 +79,13 @@ const Signin = ({history}) => {
 
     return (
         <Layout>
-            <div className="col-d-6 offset-md-3">
+            <div className="col-d-6">
             <ToastContainer />
             {isAuth() ? <Redirect to="/"/> : null}
             <h1 className="p-5 text-center">SignIn</h1>
             <Google informParent={informParent}/>
             {signinForm()}
+            <Link to="/auth/password/forgot">Forgot password?</Link>
             </div>
         </Layout>
     );
