@@ -1,0 +1,13 @@
+#test{
+    background-image: url(./images/black-lives-matter.jpeg);
+
+    /* Full height */
+    height: 100vh;
+
+    /* Center and scale the image nicely */
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
