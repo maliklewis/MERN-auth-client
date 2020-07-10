@@ -6,5 +6,6 @@ export const setUrl = () => {
 }
 
 export const apis = {
-    GOOGLE_CLIENT_ID: '1096628844880-2r2q4ganf8vbrk6s5636gahdu27qfip1.apps.googleusercontent.com'
+    GOOGLE_CLIENT_ID: '1096628844880-2r2q4ganf8vbrk6s5636gahdu27qfip1.apps.googleusercontent.com',
+    GOOGLE_MAPS_API: 'AIzaSyB-Iub9S0l-pcy7d4A-k2WiS0gKxnb_ImE'
 }

@@ -1,21 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './core/Layout';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import {apis} from './Config'
 
-const App = () => {
-  return (
-    <Layout>
-      <div className="col-d-6 text-center">
-        <h1 className="pt-5">Parallel</h1>
-        <h2 className="pb-5">A solution to all your parking needs</h2>
-        <hr />
-        <p className="lead">
-          Parallel offers arrangements for convenient parking services.
-          We do not own any of the real estate listings,
-          nor do we host our own events.
-        </p>
-      </div>
-    </Layout>
-  );
+const mapStyles = {
+  width: '75%',
+  height: '75%'
 };
 
-export default App;
+export class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,  //Hides or the shows the infoWindow
+    activeMarker: {},          //Shows the active marker upon click
+    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+  };
+
+  onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+  onClose = props => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      });
+    }
+  };
+
+  render() {
+    return (
+      <Layout>
+        <Map
+          google={this.props.google}
+          zoom={10}
+          style={mapStyles}
+          initialCenter={{
+          lat: 45.3440365,
+          lng: -75.663363
+          }}
+        />
+      </Layout>
+      
+    );
+  }
+}
+
+export default GoogleApiWrapper({
+  apiKey: apis.GOOGLE_MAPS_API
+})(MapContainer);
