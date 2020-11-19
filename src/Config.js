@@ -1,7 +1,7 @@
 import {setLocalStorage} from './auth/Helpers'
 
 export const setUrl = () => {
-    let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : 'http://68.183.207.128/api';
+    let serverUrl = process.env.NODE_ENV === "development" ? 'http://localhost:8000/api' : 'ec2-18-219-242-234.us-east-2.compute.amazonaws.com';
     setLocalStorage("server-url", serverUrl)
 }
 
